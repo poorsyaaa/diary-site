@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Full stack Developer Assessment - BuildPass
 
-## Getting Started
+## How to set up and run Site Diary
 
-First, run the development server:
+## Prerequisites
+
+- Node.js 18.x or higher
+- PostgreSQL 15.x or higher
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/site-diary.git
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a `.env` file from the `.env.example` file:
+
+```bash
+cp .env.example .env
+```
+
+4. Update the `.env` file with your PostgreSQL connection details:
+
+```bash
+POSTGRES_HOST="your-postgres-host"
+POSTGRES_USER="your-username"
+POSTGRES_PASSWORD="your-password"
+POSTGRES_DB="site-diary or whatever you want"
+
+DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}"
+```
+
+5. Run the database migration:
+
+```bash
+npx prisma migrate dev
+```
+
+6. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+7. Open your browser and navigate to `http://localhost:3000` to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Understanding and Approach
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+When I received this assessment, I started by analyzing what a construction site really needs in a diary system. While the basic requirements asked for date, weather, and image tracking, I researched common site documentation practices and realized that a more detailed record would be valuable. This led me to expand the data model to include visitor tracking, equipment logs, materials used, and delay reporting.
 
-## Learn More
+## Technical Decisions and Implementation
 
-To learn more about Next.js, take a look at the following resources:
+I chose tools that would support a complex data structure while allowing rapid development within the 1-2 day timeframe:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Next.js 15:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Makes building both frontend and backend simple. It automatically handles a lot of performance optimizations and helps create fast-loading pages.
 
-## Deploy on Vercel
+### TypeScript:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Catches errors before they happen and makes it easier to understand the code, especially when working with complex data like diary entries.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### TanStack Query:
+
+Handles all the data fetching and updates automatically. It makes sure users see fresh data without manually refreshing the page.
+
+### Prisma & PostgreSQL:
+
+Makes working with the database straightforward. Prisma prevents common database errors, and PostgreSQL is reliable for storing our diary entries.
+
+### shadcn/ui:
+
+Provides ready-to-use components that look good and work well, saving time on building basic UI elements.
+
+### uploadthing:
+
+Makes handling image uploads simple and reliable.
+
+## Going Beyond Requirements
+
+I expanded the core functionality by adding:
+
+- Advanced search across all entry fields
+- Filtering by date, weather, and site location etc.
+- Multiple visitor types tracking
+- Equipment and material logging
+- Delay or issue reporting
+- Delete diary entry
+- Update diary entry
+
+## Future Improvements
+
+While the foundation is solid, with more time I would add:
+
+- Testing
+  - I would start by setting up Jest and writing basic unit tests for the backend API routes to ensure they function correctly.
+  - If I had more time, I would expand testing to cover different scenarios, including frontend components and user interactions, using React Testing Library.
+- Better performance for lots of entries
+  - I would first implement pagination to ensure the app can handle a large number of diary entries without slowing down. Instead of loading everything at once, entries would load in chunks as the user scrolls.
+  - If I had more time, I would improve database efficiency by adding indexes to frequently searched fields like dates and titles, reducing query times.
+- User accounts and login
+  - I would begin by integrating NextAuth.js, BetterAuth or Supabase to allow users to log in with their credential. This would secure the app and ensure that each diary entry belongs to a specific user.
+  - If I had more time, I would add custom email/password authentication with password hashing (using bcrypt) and implement session-based authentication.
