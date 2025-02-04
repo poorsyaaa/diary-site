@@ -1,0 +1,30 @@
+datasource db {
+    url      = env("DATABASE_URL")
+    provider = "postgresql"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model SiteDiary {
+    id                Int      @id @default(autoincrement())
+    date              DateTime
+    siteLocation      String
+    weather           String
+    description       String
+    currentPhase      String
+    workCompleted     String? // Optional
+    hasDelaysOrIssues Boolean  @default(false)
+    delaysOrIssues    String? // Optional
+
+    labor     String? // Optional
+    equipment String? // Optional
+    materials String? // Optional
+
+    visitors Json[] // Stores an array of visitor objects [{ type, name, company, purpose }]
+    images   String[] // Stores image URLs with optional captions [{ file, caption }]
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime? @updatedAt
+}
