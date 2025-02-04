@@ -147,7 +147,7 @@ function SiteDiaryDetail() {
             <div>
               <p className="text-sm font-medium text-gray-500 mb-1">Issues</p>
               <div className="bg-gray-50 p-4 rounded-md">
-                <p className="text-sm">{siteDiary?.delaysOrIssues ? "Yes" : "No issues reported"}</p>
+                <p className="text-sm">{siteDiary?.hasDelaysOrIssues ? siteDiary?.delaysOrIssues : "No issues reported"}</p>
               </div>
             </div>
 

@@ -12,7 +12,7 @@
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/site-diary.git
+git clone https://github.com/poorsyaaa/diary-site.git
 ```
 
 2. Install dependencies:
@@ -51,6 +51,19 @@ npm run dev
 ```
 
 7. Open your browser and navigate to `http://localhost:3000` to see the app.
+
+## Live Demo
+
+- [https://diary-site-sigma.vercel.app/](https://diary-site-sigma.vercel.app/)
+
+## Screenshots
+
+![Screenshot 1](https://github.com/poorsyaaa/diary-site/screenshots/image4.png)
+![Screenshot 2](https://github.com/poorsyaaa/diary-site/screenshots/image3.png)
+![Screenshot 3](https://github.com/poorsyaaa/diary-site/screenshots/image2.png)
+![Screenshot 4](https://github.com/poorsyaaa/diary-site/screenshots/image.png)
+
+---
 
 ## Understanding and Approach
 
