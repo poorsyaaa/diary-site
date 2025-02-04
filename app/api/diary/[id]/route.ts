@@ -1,13 +1,15 @@
 import { updateFormSchema } from "@/types/schema";
 import { PrismaClient } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function GET(_: Request, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
+
     const diary = await prisma.siteDiary.findUnique({
-      where: { id: parseInt(params.id) },
+      where: { id: parseInt(id) },
     });
 
     if (!diary) {
@@ -23,17 +25,19 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
   }
 }
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const body = await req.json();
 
     if (!body) {
       return NextResponse.json({ error: "Request body is missing" }, { status: 400 });
     }
+
+    const { id } = await params;
     const parsedBody = await updateFormSchema.parseAsync(body);
 
     const updatedDiary = await prisma.siteDiary.update({
-      where: { id: parseInt(params.id) },
+      where: { id: parseInt(id) },
       data: { ...parsedBody },
     });
 
@@ -46,9 +50,11 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   }
 }
 
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    await prisma.siteDiary.delete({ where: { id: parseInt(params.id) } });
+    const { id } = await params;
+
+    await prisma.siteDiary.delete({ where: { id: parseInt(id) } });
 
     return NextResponse.json({
       data: {
