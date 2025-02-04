@@ -58,10 +58,10 @@ npm run dev
 
 ## Screenshots
 
-![Screenshot 1](https://github.com/poorsyaaa/diary-site/screenshots/image4.png)
-![Screenshot 2](https://github.com/poorsyaaa/diary-site/screenshots/image3.png)
-![Screenshot 3](https://github.com/poorsyaaa/diary-site/screenshots/image2.png)
-![Screenshot 4](https://github.com/poorsyaaa/diary-site/screenshots/image.png)
+![Screenshot 1](https://github.com/poorsyaaa/diary-site/blob/b798557c3ed6f93d1a6ff47fc58aad3d4c048492/screenshots/image4.png)
+![Screenshot 2](https://github.com/poorsyaaa/diary-site/blob/b798557c3ed6f93d1a6ff47fc58aad3d4c048492/screenshots/image3.png)
+![Screenshot 3](https://github.com/poorsyaaa/diary-site/blob/b798557c3ed6f93d1a6ff47fc58aad3d4c048492/screenshots/image2.png)
+![Screenshot 4](https://github.com/poorsyaaa/diary-site/blob/b798557c3ed6f93d1a6ff47fc58aad3d4c048492/screenshots/image.png)
 
 ---
 
