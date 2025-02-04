@@ -18,7 +18,7 @@ git clone https://github.com/your-username/site-diary.git
 2. Install dependencies:
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 
 3. Create a `.env` file from the `.env.example` file:
@@ -109,3 +109,7 @@ While the foundation is solid, with more time I would add:
 - User accounts and login
   - I would begin by integrating NextAuth.js, BetterAuth or Supabase to allow users to log in with their credential. This would secure the app and ensure that each diary entry belongs to a specific user.
   - If I had more time, I would add custom email/password authentication with password hashing (using bcrypt) and implement session-based authentication.
+
+## How AI helps with development
+
+I primarily use AI for generating mock data, which helps speed up development and testing without manually creating sample entries. It's also incredibly useful for fast bug and error solving, allowing me to quickly identify issues and find solutions without spending too much time debugging. Additionally, I use AI for brainstorming ideas, whether it's optimizing database structures, improving performance, or refining UI/UX decisions. While I don’t rely on AI for writing full implementations, it serves as a great assistant for improving efficiency and validating my approach.

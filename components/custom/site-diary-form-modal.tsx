@@ -164,10 +164,8 @@ const SiteDiaryFormModal: React.FC<SiteDiaryFormModalProps> = ({ open = false, o
                     <Loader2 className="mr-2 h-4 w-4" />
                     {isUpdateMode ? "Updating..." : "Saving..."}
                   </>
-                ) : isUpdateMode ? (
-                  "Update Site Diary Entry"
                 ) : (
-                  "Submit Site Diary Entry"
+                  <>{isUpdateMode ? "Update Site Diary Entry" : "Submit Site Diary Entry"}</>
                 )}
               </Button>
             </form>

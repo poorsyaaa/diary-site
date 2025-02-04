@@ -56,12 +56,7 @@ const FilterSheet: React.FC<FilterSheetProps> = ({ open, onOpenChange, filters, 
             </Button>
           </div>
         </SheetHeader>
-        <div
-          className={cn(
-            "mt-6 space-y-6",
-            !isDesktop && "pb-20" // Extra padding for mobile apply button
-          )}
-        >
+        <div className={cn("mt-6 space-y-6", !isDesktop && "pb-20")}>
           {/* Search */}
           <div className="space-y-2">
             <Label className="text-sm font-medium">Search</Label>

@@ -104,7 +104,7 @@ export async function GET(req: NextRequest) {
     const resourceFilters: Prisma.SiteDiaryWhereInput[] = [];
 
     if (filters?.resources?.includes("weather")) {
-      resourceFilters.push({ weather: { not: "" } }); // Ensure weather data exists
+      resourceFilters.push({ weather: { not: "" } });
     }
 
     if (filters?.resources?.includes("visitors")) {

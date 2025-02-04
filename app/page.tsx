@@ -4,13 +4,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, X } from "lucide-react";
-import { RESOURCES_TYPES, SITE_OPTIONS } from "@/constants/options";
+import { RESOURCES_TYPES } from "@/constants/options";
 import { useGetSiteDiariesQuery, SiteDiaryData } from "@/lib/queries/site-diary.queries";
 
 import DiaryCard from "@/components/custom/diary-card";
 import FilterSheet from "@/components/custom/filter-sheet";
 import { format } from "date-fns";
 import SiteDiaryFormModal from "@/components/custom/site-diary-form-modal";
+import { getSiteName } from "@/lib/common-utils";
 
 interface GroupedDiaries {
   [siteLocation: string]: {
@@ -43,8 +44,6 @@ export default function Page() {
     orderBy: "date",
     order: "asc",
   });
-
-  const getSiteName = (siteId: string) => SITE_OPTIONS.find((site) => site.id === siteId)?.name ?? siteId;
 
   const handleClearFilters = () => {
     setFilters({

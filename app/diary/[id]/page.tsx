@@ -9,8 +9,8 @@ import Image from "next/image";
 import { useDeleteSiteDiaryMutation } from "@/lib/mutation/site-diary.mutation";
 import LoadingOverlay from "@/components/custom/loading-overlay";
 import { useQueryClient } from "@tanstack/react-query";
-import { SITE_OPTIONS } from "@/constants/options";
 import { format } from "date-fns";
+import { getSiteName } from "@/lib/common-utils";
 
 function SiteDiaryDetail() {
   const router = useRouter();
@@ -31,8 +31,6 @@ function SiteDiaryDetail() {
       },
     });
   };
-
-  const getSiteName = (siteId: string) => SITE_OPTIONS.find((site) => site.id === siteId)?.name ?? siteId;
 
   if (isLoading) return <LoadingOverlay isLoading={isLoading} message={"Loading..."} />;
 
@@ -121,7 +119,7 @@ function SiteDiaryDetail() {
               </div>
               <div className="space-y-3">
                 {siteDiary?.visitors.map((visitor, index) => (
-                  <div key={index} className="bg-gray-50 p-4 rounded-md">
+                  <div key={index + 1} className="bg-gray-50 p-4 rounded-md">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <p className="text-sm font-medium">Visitor Type</p>
@@ -159,7 +157,7 @@ function SiteDiaryDetail() {
                 <p className="text-sm font-medium text-gray-500">Site Photos</p>
                 <div className="grid grid-cols-2 gap-4">
                   {siteDiary?.images.map((url, index) => (
-                    <div key={index} className="relative aspect-video bg-gray-100 rounded-md flex items-center justify-center">
+                    <div key={index + 1} className="relative aspect-video bg-gray-100 rounded-md flex items-center justify-center">
                       <Image
                         src={url}
                         alt={`Site photo ${index + 1}`}
