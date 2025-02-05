@@ -103,6 +103,8 @@ export async function GET(req: NextRequest) {
       };
     }
 
+    console.log("whereConditions", whereConditions.date);
+
     const resourceFilters: Prisma.SiteDiaryWhereInput[] = [];
 
     if (filters?.resources?.includes("weather")) {
