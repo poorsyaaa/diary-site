@@ -96,23 +96,8 @@ export async function GET(req: NextRequest) {
       const startLocalDay = startOfDay(zonedDate);
       const endLocalDay = endOfDay(zonedDate);
 
-      const startUTC = toZonedTime(startLocalDay, userTimeZone);
-      const endUTC = toZonedTime(endLocalDay, userTimeZone);
-
-      const fromZonedTime1 = fromZonedTime(startLocalDay, userTimeZone);
-      const fromZonedTime2 = fromZonedTime(endLocalDay, userTimeZone);
-
-      console.log("DATE FILTER", {
-        localDate,
-        userTimeZone,
-        zonedDate,
-        startLocalDay,
-        endLocalDay,
-        startUTC,
-        endUTC,
-        fromZonedTime1,
-        fromZonedTime2,
-      });
+      const startUTC = fromZonedTime(startLocalDay, userTimeZone);
+      const endUTC = fromZonedTime(endLocalDay, userTimeZone);
 
       whereConditions.date = {
         gte: startUTC,
