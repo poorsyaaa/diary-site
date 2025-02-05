@@ -43,6 +43,7 @@ export default function Page() {
     site: filters.site === "all" ? undefined : filters.site,
     orderBy: "date",
     order: "asc",
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   });
 
   const handleClearFilters = () => {

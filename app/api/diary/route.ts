@@ -1,7 +1,7 @@
 import { formSchema, siteDiaryFilterSchema } from "@/types/schema";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { endOfDay, startOfDay } from "date-fns";
-import { toZonedTime } from "date-fns-tz";
+import { fromZonedTime, toZonedTime } from "date-fns-tz";
 
 import { NextRequest, NextResponse } from "next/server";
 import { ZodError } from "zod";
@@ -66,6 +66,7 @@ export async function GET(req: NextRequest) {
       resources: searchParams.get("resources") ?? undefined,
       orderBy: searchParams.get("orderBy") ?? "createdAt",
       order: searchParams.get("order") ?? "desc",
+      timeZone: searchParams.get("timeZone") ?? "UTC",
     });
 
     const whereConditions: Prisma.SiteDiaryWhereInput = {};
@@ -87,13 +88,16 @@ export async function GET(req: NextRequest) {
 
     if (filters.date) {
       const localDate = new Date(filters.date);
-      const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-      const startLocalDay = startOfDay(localDate);
-      const endLocalDay = endOfDay(localDate);
+      const userTimeZone = filters.timeZone;
 
-      const startUTC = toZonedTime(startLocalDay, userTimeZone);
-      const endUTC = toZonedTime(endLocalDay, userTimeZone);
+      const zonedDate = toZonedTime(localDate, userTimeZone);
+
+      const startLocalDay = startOfDay(zonedDate);
+      const endLocalDay = endOfDay(zonedDate);
+
+      const startUTC = fromZonedTime(startLocalDay, userTimeZone);
+      const endUTC = fromZonedTime(endLocalDay, userTimeZone);
 
       whereConditions.date = {
         gte: startUTC,
