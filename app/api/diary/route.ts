@@ -66,6 +66,7 @@ export async function GET(req: NextRequest) {
       resources: searchParams.get("resources") ?? undefined,
       orderBy: searchParams.get("orderBy") ?? "createdAt",
       order: searchParams.get("order") ?? "desc",
+      timeZone: searchParams.get("timeZone") ?? "UTC",
     });
 
     const whereConditions: Prisma.SiteDiaryWhereInput = {};
@@ -87,7 +88,8 @@ export async function GET(req: NextRequest) {
 
     if (filters.date) {
       const localDate = new Date(filters.date);
-      const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+      const userTimeZone = filters.timeZone;
 
       const startLocalDay = startOfDay(localDate);
       const endLocalDay = endOfDay(localDate);

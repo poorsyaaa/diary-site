@@ -40,6 +40,7 @@ export const siteDiaryFilterSchema = z.object({
     .transform((str) => (str ? str.split(",").filter(Boolean) : undefined)),
   orderBy: z.enum(["createdAt", "date", "currentPhase"]).default("createdAt"),
   order: z.enum(["asc", "desc"]).default("desc"),
+  timeZone: z.string().optional().default("UTC"),
 });
 
 export const updateFormSchema = baseFormSchema

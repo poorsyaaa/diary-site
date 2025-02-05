@@ -39,6 +39,7 @@ export const getSiteDiaries = async (filters: SiteDiaryFilters) => {
   if (filters?.date) params.append("date", filters.date);
   if (filters?.search) params.append("search", filters.search);
   if (filters?.resources?.length) params.append("resources", filters.resources.join(","));
+  if (filters?.timeZone) params.append("timeZone", filters.timeZone);
 
   const response = await fetch(`/api/diary?${params.toString()}`, {
     method: "GET",
