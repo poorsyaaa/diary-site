@@ -91,8 +91,10 @@ export async function GET(req: NextRequest) {
 
       const userTimeZone = filters.timeZone;
 
-      const startLocalDay = startOfDay(localDate);
-      const endLocalDay = endOfDay(localDate);
+      const zonedDate = toZonedTime(localDate, userTimeZone);
+
+      const startLocalDay = startOfDay(zonedDate);
+      const endLocalDay = endOfDay(zonedDate);
 
       const startUTC = toZonedTime(startLocalDay, userTimeZone);
       const endUTC = toZonedTime(endLocalDay, userTimeZone);
@@ -103,6 +105,7 @@ export async function GET(req: NextRequest) {
       console.log("DATE FILTER", {
         localDate,
         userTimeZone,
+        zonedDate,
         startLocalDay,
         endLocalDay,
         startUTC,
